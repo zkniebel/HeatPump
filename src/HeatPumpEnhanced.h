@@ -16,8 +16,8 @@
   License along with this library; if not, write to the Free Software
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
-#ifndef __HeatPump_H__
-#define __HeatPump_H__
+#ifndef __HeatPumpEnhanced_H__
+#define __HeatPumpEnhanced_H__
 #include <stdint.h>
 #include <math.h>
 #include <HardwareSerial.h>
