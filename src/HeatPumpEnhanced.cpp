@@ -250,17 +250,16 @@ void HeatPump::setRemoteTemperature(float setting) {
     packet[i] = HEADER[i];
   }
   packet[5] = 0x07;
-   if((setting > 0) && (!tempMode){ //units that don't support 0.5 increment
-    packet[6] = 0x01;
-    packet[8] = lookupByteMapIndex(TEMP_MAP, 16, (int)(setting + 0.5)) > -1 ? setting : TEMP_MAP[0];
-   }
-  else if(setting > 0) { //units that do support 0.5 increment
+   if(setting > 0) { //units that do support 0.5 increment
     packet[6] = 0x01;
     setting = setting * 2;
     setting = round(setting);
     setting = setting / 2;
-    float temp = (setting * 2) + 128;
-    packet[8] = (int)temp;
+	// ZK: applies changes from PR #144
+    float temp1 = 3 + ((setting - 10) * 2);
+    packet[7] = (int)temp1;
+    float temp2 = (setting * 2) + 128;
+    packet[8] = (int)temp2;
   }
   else { //reset to use internal sensors
     packet[6] = 0x00;
